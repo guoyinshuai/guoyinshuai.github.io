@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    #box {
+      width: 360px;
+      border: 1px solid #ccc;
+      margin: 100px auto;
+      overflow: hidden;
+    }
+    
+    #box img {
+      vertical-align: middle;
+    }
+    
+    #box ul {
+      overflow: hidden;
+      border-top: 1px solid #ccc;
+    }
+    
+    #box li {
+      float: left;
+    }
+  </style>
+</head>
+<body>
+<div id="box">
+  <!--bigImg是上面显示大图的区域-->
+  <img id="bigImg" src="images/01big.jpg" alt=""/>
+  <!--ul中的图片是下面要操作的小图-->
+  <ul id="list">
+    <li><img src="images/01.jpg" alt="1"/></li>
+    <li><img src="images/02.jpg" alt="2"/></li>
+    <li><img src="images/03.jpg" alt="3"/></li>
+    <li><img src="images/04.jpg" alt="4"/></li>
+    <li><img src="images/05.jpg" alt="5"/></li>
+  </ul>
+</div>
+<script>
+  // 我们发现为了更好的对页面流量优化，将底部设置为小图，这是小图地址与大图地址不同，不能直接进行设置了。
+
+  // 观察每个小图点击时需要设置的大图地址的形式：
+  // 点击小图1   "images/01big.jpg"
+  // 点击小图2   "images/02big.jpg"
+  // 点击小图3   "images/03big.jpg"
+  // 点击小图4   "images/04big.jpg"
+  // 点击小图5   "images/05big.jpg"
+
+  // 点击小图n   "images/0" + this.alt + "big.jpg"
+
+  // 1 获取元素
+  var bigImg = document.getElementById('bigImg');
+  var list = document.getElementById('list');
+  var imgs = list.getElementsByTagName('img');
+
+  // 2 遍历设置事件
+  for (var i = 0; i < imgs.length; i++) {
+    imgs[i].onclick = function () {
+      // 3 按照规律设置对应的大图地址
+      bigImg.src = 'images/0' + this.alt + 'big.jpg';
+    };
+  }
+  //#######
+  var bigImg = document.getElementById('bigImg');
+  var list = document.getElementById('list');
+  var imgs = list.getElementsByTagName('img');
+  for(var i = 0; i < imgs.length; i++){
+    imgs[i].onclick = function(){
+      bigImg.src = 'images/0' + this.alt + 'big.jpg';   
+    }
+  }
+</script>
+</body>
+</html>
